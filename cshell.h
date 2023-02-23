@@ -13,7 +13,7 @@
 #include <errno.h>
 
 
-void cmdexec(char **argv, char **env);
+void cmdexec(char **argv);
 char *locate_cmd(char *str);
 char *_strcpy(char *dest, char *src);
 
