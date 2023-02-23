@@ -11,6 +11,7 @@ void cmdexec(char *argv[], char **env)
 {
 	char *cmd = NULL;
 	pid_t pid;
+	char *sh = "./shell";
 
 	pid = fork();
 	if (argv)
@@ -24,7 +25,9 @@ void cmdexec(char *argv[], char **env)
 			{
 				if (errno == EACCES)
 					exit(126);
-				_putserr("File not Found\n");
+				_putserr(sh);
+				_putserr(": ");
+				_putserr("No such file or directory\n");
 				exit(1);
 			}
 		}
