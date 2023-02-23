@@ -3,10 +3,11 @@
 /**
  * cmdexec -function to handle cshell's commands
  * @argv: pointer to argv vector (array of strings)
+ * @env: environ
  * Return: void
 */
 
-void cmdexec(char *argv[])
+void cmdexec(char *argv[], char **env)
 {
 	char *cmd = NULL;
 	pid_t pid;
@@ -19,7 +20,7 @@ void cmdexec(char *argv[])
 			perror("Error:");
 		if (pid == 0)
 		{
-			if (execve(cmd, argv, NULL))
+			if (execve(cmd, argv, env))
 			{
 				if (errno == EACCES)
 					exit(126);

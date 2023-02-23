@@ -16,6 +16,7 @@ int main(int argc, char **argv, char **env)
 	ssize_t rd_chars;
 	const char *delim = " \n";
 	int i, num_tokens = 0;
+	(void) argc;
 
 	_puts(argv[1]);
 	while (1)
@@ -46,7 +47,7 @@ int main(int argc, char **argv, char **env)
 			argv[i] = (char *) malloc(sizeof(char) * strlen(token));
 			argv[i] = token, token = strtok(NULL, delim);
 		}
-		argv[i] = NULL, cmdexec(argv);
+		argv[i] = NULL, cmdexec(argv, env);
 	}
 	free(lnptr_cpy), free(lnptr);
 	return (0);
