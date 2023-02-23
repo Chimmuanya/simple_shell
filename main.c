@@ -4,11 +4,11 @@
  * main -Entry function for simple shell program
  * @argc: argument count
  * @argv: argument vector -pointer to pointer address
- *
+ * @env: environment
  * Return: always 0
 */
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
 	char *s_prompt = "(CShell) $ ";
 	char *lnptr, *lnptr_cpy, *token;
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 			argv[i] = (char *) malloc(sizeof(char) * strlen(token));
 			argv[i] = token, token = strtok(NULL, delim);
 		}
-		argv[i] = NULL, cmdexec(argv);
+		argv[i] = NULL, cmdexec(argv, env);
 	}
 	free(lnptr_cpy), free(lnptr);
 	return (0);
